@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Kasir | Three Daya Premium</title>
+    <link rel="stylesheet" href="cashier.css">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <nav class="mini-sidebar">
+        <a href="admin.html" class="mini-nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+            Admin
+        </a>
+        <a href="#" class="mini-nav-item active">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 15h0M2 9h20"></path></svg>
+            Kasir
+        </a>
+        <a href="#" class="mini-nav-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"></path></svg>
+            Laporan
+        </a>
+    </nav>
+
+    <div class="pos-container">
+        <section class="services-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h1 style="font-family: 'Montserrat'; font-weight: 900; font-size: 1.8rem;">SERVICE <span>MENU</span></h1>
+                <input type="text" placeholder="Cari layanan..." style="background: var(--glass); border: 1px solid var(--glass-border); color: white; padding: 0.8rem 1.5rem; border-radius: 50px; width: 300px;">
+            </div>
+
+            <div class="category-tabs">
+                <div class="category-tab active">All Services</div>
+                <div class="category-tab">Washing</div>
+                <div class="category-tab">Detailing</div>
+                <div class="category-tab">Coating</div>
+                <div class="category-tab">Others</div>
+            </div>
+
+            <div class="pos-grid">
+                <div class="pos-item-card" onclick="addToCart('Premium Wash', 50000)">
+                    <span class="item-icon">🧽</span>
+                    <span class="item-name">Premium Wash</span>
+                    <span class="item-price">Rp 50.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Deep Engine Clean', 150000)">
+                    <span class="item-icon">⚙️</span>
+                    <span class="item-name">Engine Clean</span>
+                    <span class="item-price">Rp 150.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Interior Salon', 350000)">
+                    <span class="item-icon">💺</span>
+                    <span class="item-name">Interior Salon</span>
+                    <span class="item-price">Rp 350.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Full Detailing', 1200000)">
+                    <span class="item-icon">✨</span>
+                    <span class="item-name">Full Detailing</span>
+                    <span class="item-price">Rp 1.200.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Ceramic Coating', 3500000)">
+                    <span class="item-icon">💎</span>
+                    <span class="item-name">Ceramic Coating</span>
+                    <span class="item-price">Rp 3.500.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Tire Polish Extra', 20000)">
+                    <span class="item-icon">⚫</span>
+                    <span class="item-name">Tire Polish +</span>
+                    <span class="item-price">Rp 20.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('Glass Polish', 100000)">
+                    <span class="item-icon">🪟</span>
+                    <span class="item-name">Glass Polish</span>
+                    <span class="item-price">Rp 100.000</span>
+                </div>
+                <div class="pos-item-card" onclick="addToCart('AC Evaporator', 250000)">
+                    <span class="item-icon">❄️</span>
+                    <span class="item-name">AC Evaporator</span>
+                    <span class="item-price">Rp 250.000</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="cart-section">
+            <div class="cart-header">
+                <h2 style="font-family: 'Montserrat';">CURRENT <span>ORDER</span></h2>
+                <button style="background: none; border: 1px solid var(--danger); color: var(--danger); cursor: pointer; padding: 5px 10px; border-radius: 4px; font-size: 0.7rem;" onclick="clearCart()">Clear</button>
+            </div>
+
+            <div class="customer-select">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>Walk-in Customer</span>
+                <span style="margin-left: auto; color: var(--primary); font-size: 0.7rem; cursor: pointer;">Pilih Pelanggan</span>
+            </div>
+
+            <div class="cart-items" id="cartItems">
+                <!-- Items will appear here -->
+                <div style="text-align: center; color: var(--text-gray); margin-top: 50px;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.2; margin-bottom: 10px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path></svg>
+                    <p>Keranjang masih kosong</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">Rp 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Pajak (11%)</span>
+                    <span id="tax">Rp 0</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>TOTAL</span>
+                    <span id="total">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <div class="method-btn active">CASH</div>
+                <div class="method-btn">DEBIT/CC</div>
+                <div class="method-btn">QRIS</div>
+            </div>
+
+            <button class="checkout-btn" onclick="checkout()">BAYAR SEKARANG</button>
+        </section>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateUI();
+        }
+
+        function updateUI() {
+            const container = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: var(--text-gray); margin-top: 50px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.2; margin-bottom: 10px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path></svg>
+                        <p>Keranjang masih kosong</p>
+                    </div>
+                `;
+                document.getElementById('subtotal').innerText = 'Rp 0';
+                document.getElementById('tax').innerText = 'Rp 0';
+                document.getElementById('total').innerText = 'Rp 0';
+                return;
+            }
+
+            container.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="item-qty">1</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.85rem;">${item.name}</div>
+                            <div style="color: var(--text-gray); font-size: 0.7rem;">Layanan Premium</div>
+                        </div>
+                    </div>
+                    <div style="font-weight: 800; font-size: 0.9rem;">Rp ${item.price.toLocaleString()}</div>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const tax = subtotal * 0.11;
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').innerText = `Rp ${subtotal.toLocaleString()}`;
+            document.getElementById('tax').innerText = `Rp ${tax.toLocaleString()}`;
+            document.getElementById('total').innerText = `Rp ${total.toLocaleString()}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) return alert('Pilih layanan terlebih dahulu!');
+            alert('Transaksi Berhasil! Mencetak struk...');
+            clearCart();
+        }
+    </script>
+</body>
+</html>

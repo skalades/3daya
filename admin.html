@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Dashboard | Three Daya Premium</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="public/images/logo.png" alt="Logo" style="height: 50px;">
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active" onclick="showSection('overview')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                Overview
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('reservations')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Reservations
+            </a>
+            <a href="cashier.html" class="nav-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 15h0M2 9h20"></path></svg>
+                POS Kasir
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('customers')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Customers
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('inventory')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                Inventory
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('finance')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Finance
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile-mini">
+                <div class="user-avatar">A</div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.85rem;">Admin Three Daya</div>
+                    <div style="color: var(--text-gray); font-size: 0.7rem;">Super Admin</div>
+                </div>
+            </div>
+            <a href="index.html" class="nav-link" style="margin-top: 1rem; color: var(--danger);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Sign Out
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Search anything... (Ctrl + K)">
+                </div>
+            </div>
+            <div class="top-actions">
+                <div class="icon-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <div class="notification-dot"></div>
+                </div>
+                <div class="icon-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overview Section -->
+        <section id="overview" class="dashboard-section active">
+            <div class="section-header">
+                <h1>Dashboard Overview</h1>
+                <p>Welcome back, Admin. Here's what's happening today.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <div class="stat-label">Daily Revenue</div>
+                    <div class="stat-value">Rp 2.45M</div>
+                    <div class="stat-trend up">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        12.5% from yesterday
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <div class="stat-label">Active Jobs</div>
+                    <div class="stat-value">14</div>
+                    <div class="stat-trend up">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        2 new units
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <div class="stat-label">Bookings</div>
+                    <div class="stat-value">06</div>
+                    <div class="stat-trend down">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+                        1 slot left
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <div class="stat-label">Satisfaction</div>
+                    <div class="stat-value">4.9/5</div>
+                    <div class="stat-trend up">
+                        98% Positive reviews
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <div class="action-card" onclick="showSection('reservations')">
+                    <div class="action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">New Booking</div>
+                        <div style="color: var(--text-gray); font-size: 0.75rem;">Add a new reservation</div>
+                    </div>
+                </div>
+                <div class="action-card" onclick="window.location.href='cashier.html'">
+                    <div class="action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 15h0M2 9h20"></path></svg>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Open POS</div>
+                        <div style="color: var(--text-gray); font-size: 0.75rem;">Start new transaction</div>
+                    </div>
+                </div>
+                <div class="action-card">
+                    <div class="action-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Reports</div>
+                        <div style="color: var(--text-gray); font-size: 0.75rem;">Download daily logs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-card">
+                <div class="table-header">
+                    <h3>Recent Activities</h3>
+                    <button class="btn secondary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">View All</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>License Plate</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:30 AM</td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar">BS</div>
+                                    <span>Budi Santoso</span>
+                                </div>
+                            </td>
+                            <td>Premium Wash</td>
+                            <td>D 1234 ABC</td>
+                            <td><span class="status-pill status-working">Working</span></td>
+                        </tr>
+                        <tr>
+                            <td>09:15 AM</td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar">AP</div>
+                                    <span>Andini Putri</span>
+                                </div>
+                            </td>
+                            <td>Full Detailing</td>
+                            <td>Z 5678 XY</td>
+                            <td><span class="status-pill status-ready">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:00 AM</td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar">RH</div>
+                                    <span>Rudi Hermawan</span>
+                                </div>
+                            </td>
+                            <td>Audio Upgrade</td>
+                            <td>B 9999 VIP</td>
+                            <td><span class="status-pill status-waiting">Waiting</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Reservations Section -->
+        <section id="reservations" class="dashboard-section">
+            <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <h1>Manage Reservations</h1>
+                    <p>Review and manage upcoming car care appointments.</p>
+                </div>
+                <button class="btn primary" style="padding: 0.8rem 1.5rem; font-size: 0.85rem;">+ Create Booking</button>
+            </div>
+            
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Customer</th>
+                            <th>Car Model</th>
+                            <th>Service</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>05 May 2026</td>
+                            <td>01:00 PM</td>
+                            <td>Hendra Wijaya</td>
+                            <td>Honda Civic</td>
+                            <td>Ceramic Coating</td>
+                            <td><button style="background:none; border:1px solid var(--glass-border); color:var(--text-gray); cursor:pointer; padding: 6px 12px; border-radius:8px; font-size: 0.75rem;">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>05 May 2026</td>
+                            <td>02:30 PM</td>
+                            <td>Siska Amalia</td>
+                            <td>Toyota Fortuner</td>
+                            <td>Interior Salon</td>
+                            <td><button style="background:none; border:1px solid var(--glass-border); color:var(--text-gray); cursor:pointer; padding: 6px 12px; border-radius:8px; font-size: 0.75rem;">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Customers Section -->
+        <section id="customers" class="dashboard-section">
+            <div class="section-header">
+                <h1>Customer Database</h1>
+                <p>Manage your loyal customers and their membership status.</p>
+            </div>
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>WhatsApp</th>
+                            <th>Visits</th>
+                            <th>Membership</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar" style="background: var(--warning); color: black;">BS</div>
+                                    <span>Budi Santoso</span>
+                                </div>
+                            </td>
+                            <td>0812-3456-7890</td>
+                            <td>12x</td>
+                            <td><span style="color: gold; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px;">GOLD MEMBER</span></td>
+                        </tr>
+                        <tr>
+                            <td>#002</td>
+                            <td>
+                                <div class="customer-info">
+                                    <div class="customer-avatar">AP</div>
+                                    <span>Andini Putri</span>
+                                </div>
+                            </td>
+                            <td>0857-1122-3344</td>
+                            <td>4x</td>
+                            <td><span style="color: #C0C0C0; font-weight: 600; font-size: 0.75rem;">Silver</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Inventory Section -->
+        <section id="inventory" class="dashboard-section">
+            <div class="section-header">
+                <h1>Stock & Inventory</h1>
+                <p>Monitor supplies and chemical stocks for services.</p>
+            </div>
+            <div class="inventory-list">
+                <div class="inventory-item">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div style="font-weight: 700; margin-bottom: 0.3rem;">Premium Car Shampoo</div>
+                            <div style="color: var(--text-gray); font-size: 0.75rem;">PH Balanced Formula</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 800;">12L / 20L</div>
+                            <div style="color: var(--success); font-size: 0.7rem;">In Stock</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inventory-item">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div style="font-weight: 700; margin-bottom: 0.3rem;">Tire Polish / Semir Ban</div>
+                            <div style="color: var(--text-gray); font-size: 0.75rem;">High Gloss Finish</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 800;">2L / 10L</div>
+                            <div style="color: var(--danger); font-size: 0.7rem;">Low Stock</div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%; background: var(--danger);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finance Section -->
+        <section id="finance" class="dashboard-section">
+            <div class="section-header">
+                <h1>Financial Reports</h1>
+                <p>Overview of revenue, expenses, and net profit.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Monthly Omzet</div>
+                    <div class="stat-value">Rp 54.2M</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Operational Cost</div>
+                    <div class="stat-value">Rp 12.8M</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Net Profit</div>
+                    <div class="stat-value" style="color: var(--success);">Rp 41.4M</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        function showSection(id) {
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Find the link that was clicked
+            const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(link => 
+                link.getAttribute('onclick') && link.getAttribute('onclick').includes(id)
+            );
+            if (activeLink) activeLink.classList.add('active');
+
+            // Update sections
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(id);
+            if (targetSection) targetSection.classList.add('active');
+        }
+
+        // Add some "Real-time" feel
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress bars on inventory section load
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => bar.style.width = width, 100);
+                        });
+                    }
+                });
+            });
+            
+            const inventorySection = document.getElementById('inventory');
+            if (inventorySection) observer.observe(inventorySection);
+        });
+    </script>
+</body>
+</html>

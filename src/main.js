@@ -1,38 +1,65 @@
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-active');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.animate-up').forEach(el => {
-    observer.observe(el);
-});
-
-// Scroll Background for Navbar
+// Navbar Scroll Effect
+const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-        navbar.style.height = '70px';
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.8)';
-        navbar.style.height = '80px';
+        navbar.classList.remove('scrolled');
     }
 });
 
-// Mobile menu placeholder (could be expanded)
-const menuToggle = document.querySelector('.mobile-menu-toggle');
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        // Implement mobile menu opening logic here
-        console.log('Mobile menu clicked');
+// Reveal on Scroll & Active Links
+const reveals = document.querySelectorAll('.reveal');
+const navItems = document.querySelectorAll('.nav-item');
+const deskLinks = document.querySelectorAll('.nav-links a');
+
+const handleScroll = () => {
+    const triggerBottom = window.innerHeight / 5 * 4;
+    const fromTop = window.scrollY + 100;
+
+    // Reveal elements
+    reveals.forEach(reveal => {
+        const revealTop = reveal.getBoundingClientRect().top;
+        if (revealTop < triggerBottom) {
+            reveal.classList.add('active');
+        }
     });
-}
+
+    // Active link states
+    const sections = ['home', 'services', 'about', 'location'];
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+            const top = section.offsetTop - 100;
+            const bottom = top + section.offsetHeight;
+
+            if (fromTop >= top && fromTop <= bottom) {
+                // Update bottom nav
+                navItems.forEach(item => {
+                    item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+                });
+                // Update desktop nav
+                deskLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        }
+    });
+};
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll);
+
+// Smooth link handling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
