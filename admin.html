@@ -399,6 +399,12 @@
             });
             const targetSection = document.getElementById(id);
             if (targetSection) targetSection.classList.add('active');
+
+            // Auto-hide sidebar on mobile
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth <= 992) {
+                sidebar.classList.remove('active');
+            }
         }
 
         // Add some "Real-time" feel
