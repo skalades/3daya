@@ -155,7 +155,7 @@ h1, h2, h3 {
     height: 100vh;
     display: flex;
     align-items: center;
-    background: url('/public/images/hero-premium.png') center/cover no-repeat;
+    background: url('/images/hero-premium.png') center/cover no-repeat;
     overflow: hidden;
 }
 
